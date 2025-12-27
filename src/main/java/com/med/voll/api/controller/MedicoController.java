@@ -1,7 +1,11 @@
 package com.med.voll.api.controller;
 
 import com.med.voll.api.medico.DatosRegistroMedico;
-import org.springframework.stereotype.Controller;
+import com.med.voll.api.medico.IMedicoRepository;
+import com.med.voll.api.medico.Medico;
+import jakarta.validation.Valid;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,8 +15,12 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/medicos")
 public class MedicoController {
 
+    @Autowired
+    private IMedicoRepository repository;
+
+    @Transactional
     @PostMapping
-    public void registrar(@RequestBody DatosRegistroMedico datos) {
-        System.out.println(datos);
+    public void registrar(@Valid @RequestBody DatosRegistroMedico datos) {
+        repository.save(new Medico(datos));
     }
 }
