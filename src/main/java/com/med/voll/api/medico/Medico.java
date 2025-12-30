@@ -19,6 +19,7 @@ public class Medico {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    private Boolean activo;
     private String nombre;
     private String email;
     private String telefono;
@@ -31,6 +32,7 @@ public class Medico {
 
     public Medico(DatosRegistroMedico datos) {
         this.id = null;
+        this.activo = true;
         this.nombre = datos.nombre();
         this.email = datos.email();
         this.telefono = datos.telefono();
@@ -40,6 +42,9 @@ public class Medico {
     }
 
     public void actualizarInformaciones(DatosActualizacionMedico datos) {
+        if (datos.activo() != null) {
+            this.activo = datos.activo();
+        }
         if(datos.nombre() != null) {
             this.nombre = datos.nombre();
         }
@@ -49,5 +54,9 @@ public class Medico {
         if (datos.direccion() != null) {
             this.direccion.actualizarDireccion(datos.direccion());
         }
+    }
+
+    public void eliminar() {
+        this.activo = false;
     }
 }

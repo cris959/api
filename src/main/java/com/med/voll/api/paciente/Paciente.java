@@ -20,6 +20,8 @@ public class Paciente {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    private Boolean activo;
+
     private String nombre;
 
     private String email;
@@ -33,6 +35,7 @@ public class Paciente {
 
     public Paciente(DatosRegistroPaciente datos) {
         this.id = null;
+        this.activo = true;
         this.nombre = datos.nombre();
         this.email = datos.email();
         this.documento = datos.documento();
@@ -41,6 +44,9 @@ public class Paciente {
     }
 
     public void actualizarInformaciones(DatosActualizacionPaciente datos) {
+        if (datos.activo() != null) {
+            this.activo = datos.activo();
+        }
         if(datos.nombre() != null) {
             this.nombre = datos.nombre();
         }
@@ -50,5 +56,9 @@ public class Paciente {
         if (datos.direccion() != null) {
             this.direccion.actualizarDireccion(datos.direccion());
         }
+    }
+
+    public void eliminar() {
+        this.activo = false;
     }
 }

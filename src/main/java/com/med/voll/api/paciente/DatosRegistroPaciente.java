@@ -1,7 +1,6 @@
 package com.med.voll.api.paciente;
 
 import com.med.voll.api.direccion.DatosDireccion;
-import com.med.voll.api.medico.Especialidad;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;

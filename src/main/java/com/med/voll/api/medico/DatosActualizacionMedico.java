@@ -5,6 +5,7 @@ import jakarta.validation.constraints.NotNull;
 
 public record DatosActualizacionMedico (
         @NotNull Long id,
+        Boolean activo,
         String nombre,
         String telefono,
         DatosDireccion direccion
